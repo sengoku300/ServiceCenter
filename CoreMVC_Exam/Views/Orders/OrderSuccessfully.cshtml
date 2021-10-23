@@ -1,0 +1,11 @@
+﻿@model CoreMVC_Exam.Models.Order
+
+@{
+    ViewData["Title"] = "Заказ успешно создан";
+}
+
+<p>
+    <h1><strong>@Model.Client.FirstName @Model.Client.LastName</strong>, ваш заказ успешно создан под номером - @Model.ID</h1>
+    <p>Как только ваш заказ приймет мастер на вашу почту - @Model.Client.Email, будет отправленно письмо с датой окончания ремонта
+    и счётом за услуги! Пожалуйста, ожидайте.  </p>
+</p>

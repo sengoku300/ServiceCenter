@@ -1,0 +1,80 @@
+﻿@model CoreMVC_Exam.ViewModels.MasterFormViewModel
+
+@{
+    ViewData["Title"] = "Редактирование";
+}
+
+<h1>Мастер:</h1>
+
+@using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    <!-- втроенная защита от CSRF - атаки -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <div class="form-group">
+            <label asp-for="Picture" class="cols-sm-2 control-label">Picture</label>
+            <div class="cols-sm-10">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                    <input type="file" class="form-control" asp-for="Picture" />
+                </div>
+            </div>
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.FirstName)
+        @Html.TextBoxFor(m => m.Master.FirstName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.LastName)
+        @Html.TextBoxFor(m => m.Master.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.LastName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.Email)
+        @Html.TextBoxFor(m => m.Master.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.Passport)
+        @Html.TextBoxFor(m => m.Master.Passport, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.Passport)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.PhoneNumber)
+        @Html.TextBoxFor(m => m.Master.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.PhoneNumber)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Master.UserName)
+        @Html.TextBoxFor(m => m.Master.UserName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Master.UserName)
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Master.Birthday" class="control-label"></label>
+        <input asp-for="Master.Birthday" class="form-control" />
+        <span asp-validation-for="Master.Birthday" class="text-danger"></span>
+    </div>
+
+    <button class="btn btn-primary">Сохранить</button>
+
+    <input class="btn" type="button" value="Отменить"
+           onclick="@("window.location.href='" + @Url.Action("Index", "Admin") + "'");" />
+
+    <br />
+    <br />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

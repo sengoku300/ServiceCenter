@@ -1,0 +1,86 @@
+﻿@model CoreMVC_Exam.ViewModels.MasterDetailsViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>О мастере:</h1>
+
+<style>
+    ._img{
+        width: 500px;
+        height: 500px;
+    }
+</style>
+
+<div>
+    <h4>Мастер</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Фото
+        </dt>
+        <dd class="col-sm-10">
+           <img src="@Model.Master.PathToImage"class="_img" />
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Имя
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Master.FirstName
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Фамилия
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Master.LastName
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Количество заказов
+        </dt>
+        <dd class="col-sm-10">
+            @Model.CountOrders
+        </dd>
+    </dl>
+
+    @if (User.IsInRole("Admin"))
+    {
+    <dl class="row">
+        <dt class="col-sm-2">
+            Email
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Master.Email
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Passport
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Master.Passport
+        </dd>
+    </dl>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Password
+        </dt>
+        <dd class="col-sm-10">
+            @Model.Master.PasswordHash
+        </dd>
+    </dl>
+    }
+</div>
+<div>
+    @if (User.IsInRole("Admin"))
+    {
+    <a asp-action="Edit" asp-route-id="@Model.Master.Id">Редактирование</a>
+     }
+</div>
+

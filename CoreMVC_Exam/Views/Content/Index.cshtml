@@ -1,0 +1,187 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+
+<!--========== PAGE LAYOUT ==========-->
+<!-- About -->
+<div id="about">
+    <div class="container content-lg">
+        <div class="row">
+            <div class="col-sm-5 sm-margin-b-60">
+                <img class="full-width img-responsive" src="~/img/500x700/3.png" alt="Image">
+            </div>
+            <div class="col-sm-7">
+                <div class="section-seperator margin-b-50">
+                    <div class="margin-b-50">
+                        <div class="margin-b-30">
+                            <h2>О компании:</h2>
+                            <p>Сервисный центр — организация, занимающаяся оказанием услуг по сервисной поддержке и обслуживанию техники, оборудования и другой продукции.</p>
+                            <p>Деятельность сервисных центров включает предторговый, гарантийный и послепродажный ремонт.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2>Чем мы занимаемся:</h2>
+
+                <div class="progress-box">
+                    <h5>Предоставлением услуг высококласифицированных специалистов</h5>
+                </div>
+
+                <div class="progress-box">
+                    <h5>Онлайн гарант</h5>
+                </div>
+
+                <div class="progress-box">
+                    <h5>Ремонт абсолютно любой техники</h5>
+                </div>
+
+            </div>
+        </div>
+        <!--// end row -->
+    </div>
+</div>
+<!-- End About -->
+<!-- Experience -->
+<div id="experience">
+    <div class="bg-color-sky-light" data-auto-height="true">
+        <div class="container content-lg">
+            <div class="row row-space-2 margin-b-4">
+                <div class="col-md-3 col-sm-6 md-margin-b-4">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="fas fa-hammer"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Качество</h3>
+                            <p class="margin-b-5">Здесь работают лучшие работники всего мира</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 md-margin-b-4">
+                    <div class="service bg-color-base wow zoomIn" data-height="height" data-wow-duration=".3" data-wow-delay=".1s">
+                        <div class="service-element">
+                            <i class="fas fa-balance-scale"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3 class="color-white">Гарант</h3>
+                            <p class="color-white margin-b-5">Вас не кинут, отвечаю!</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 sm-margin-b-4">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Скорость</h3>
+                            <p class="margin-b-5">Высокая скорость работы наших сотрудников!</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="service" data-height="height">
+                        <div class="service-element">
+                            <i class="fab fa-affiliatetheme"></i>
+                        </div>
+                        <div class="service-info">
+                            <h3>Онлайн</h3>
+                            <p class="margin-b-5">Работаем 24/7</p>
+                        </div>
+                        <a href="#" class="content-wrapper-link"></a>
+                    </div>
+                </div>
+            </div>
+            <!--// end row -->
+        </div>
+    </div>
+</div>
+<!-- End Experience -->
+<!-- Work -->
+<div id="work">
+    <div class="container content-lg">
+        <div class="row margin-b-40">
+            <div class="col-sm-6">
+                <h2>Наши лучшие сотрудники:</h2>
+                <p>Здесь находятся лучшие наши сотрудники компании разных класификаций!</p>
+            </div>
+        </div>
+        <!--// end row -->
+
+        <div class="row">
+            <!-- Latest Products -->
+            <div class="col-sm-4 sm-margin-b-50">
+                <div class="margin-b-20">
+                    <div class="wow zoomIn" data-wow-duration=".3" data-wow-delay=".1s">
+                        <img class="img-responsive" src="~/img/970x647/01.jpg" alt="Latest Products Image">
+                    </div>
+                </div>
+                <h4><a asp-action="MasterDetails" asp-controller="Admin" asp-route-id="e6864c8d-2c06-4d0e-8c56-b96b70035500">Богдан Иванов</a> <span class="text-uppercase margin-l-20">Техник</span></h4>
+                <p>Наш сотрудник Богдан смог за день сделать 12 заказов, починив за день сразу 6 телефонов, 3 принтера и 3 компьютера</p>
+            </div>
+            <!-- End Latest Products -->
+            <!-- Latest Products -->
+            <div class="col-sm-4 sm-margin-b-50">
+                <div class="margin-b-20">
+                    <div class="wow zoomIn" data-wow-duration=".3" data-wow-delay=".1s">
+                        <img class="img-responsive" src="~/img/970x647/02.jpg" alt="Latest Products Image">
+                    </div>
+                </div>
+                <h4><a asp-action="MasterDetails" asp-controller="Admin" asp-route-id="59b7b04f-3ac0-461e-a89c-0796fb859c36">Билли Харингтон</a> <span class="text-uppercase margin-l-20">Инженер</span></h4>
+                <p>У нашего Билли золотые руки! К сожалению уже как 2 года не стало нашего замечательного инженера.</p>
+            </div>
+            <!-- End Latest Products -->
+            <!-- Latest Products -->
+            <div class="col-sm-4 sm-margin-b-50">
+                <div class="margin-b-20">
+                    <div class="wow zoomIn" data-wow-duration=".3" data-wow-delay=".1s">
+                        <img class="img-responsive" src="~/img/970x647/03.jpg" alt="Latest Products Image">
+                    </div>
+                </div>
+                <h4><a asp-action="MasterDetails" asp-controller="Admin" asp-route-id="b7107ffa-9335-4a3b-8979-6bbae36da48d">Павел Синс</a> <span class="text-uppercase margin-l-20">Инженер</span></h4>
+                <p>Просто Паша!</p>
+            </div>
+            <!-- End Latest Products -->
+        </div>
+        <!--// end row -->
+    </div>
+</div>
+
+<!-- End Work -->
+<!-- Clients -->
+<div class="bg-color-sky-light" style="text-align: center;">
+    <h1>Наши партнёры</h1>
+    <div class="content-lg container">
+        <!-- Swiper Clients -->
+        <div class="swiper-slider swiper-clients">
+            <!-- Swiper Wrapper -->
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/01.png" alt="Clients Logo">
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/02.png" alt="Clients Logo">
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/03.png" alt="Clients Logo">
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/04.png" alt="Clients Logo">
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/05.png" alt="Clients Logo">
+                </div>
+                <div class="swiper-slide">
+                    <img class="swiper-clients-img" src="~/img/clients/06.png" alt="Clients Logo">
+                </div>
+            </div>
+            <!-- End Swiper Wrapper -->
+        </div>
+        <!-- End Swiper Clients -->
+    </div>
+</div>
+<!-- End Clients -->

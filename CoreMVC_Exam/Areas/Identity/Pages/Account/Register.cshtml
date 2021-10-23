@@ -1,0 +1,179 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+
+<style>
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    label {
+        margin-bottom: 15px;
+    }
+
+    input,
+    input::-webkit-input-placeholder {
+        font-size: 11px;
+        padding-top: 3px;
+    }
+
+    .form-control {
+        height: auto !important;
+        padding: 8px 12px !important;
+    }
+
+    .input-group {
+        box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.21) !important;
+    }
+
+    #button {
+        border: 1px solid #ccc;
+        margin-top: 28px;
+        padding: 6px 12px;
+        color: #666;
+        text-shadow: 0 1px #fff;
+        cursor: pointer;
+        border-radius: 3px 3px;
+        box-shadow: 0 1px #fff inset, 0 1px #ddd;
+        background: #f5f5f5;
+        background: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f5f5f5), color-stop(100%, #eeeeee));
+        background: -webkit-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+        background: -o-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+        background: -ms-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+        background: linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5f5f5', endColorstr='#eeeeee', GradientType=0);
+    }
+
+    .main-form {
+        margin-top: 30px;
+        margin: 0 auto;
+        max-width: 400px;
+        padding: 10px 40px;
+        background: #009edf;
+        color: #FFF;
+        text-shadow: none;
+        box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.31);
+    }
+
+    span.input-group-addon i {
+        color: #009edf;
+        font-size: 17px;
+    }
+
+    .login-button {
+        margin-top: 5px;
+    }
+</style>
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-route-returnUrl="@Model.ReturnUrl" method="post" enctype="multipart/form-data">
+            <h4>Создание нового мастера.</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="Input.Email" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" asp-for="Input.Email" placeholder="Enter your Email" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.FirstName" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" asp-for="Input.FirstName" placeholder="Enter FirstName" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+            </div> 
+            
+            <div class="form-group">
+                <label asp-for="Input.LastName" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" asp-for="Input.LastName" placeholder="Enter LastName" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.LastName" class="text-danger"></span>
+            </div> 
+            
+            <div class="form-group">
+                <label asp-for="Input.Passport" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                        <input type="text" class="form-control" asp-for="Input.Passport" placeholder="Enter Passport" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Passport" class="text-danger"></span>
+            </div> 
+
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="Input.Picture" class="cols-sm-2 control-label"></label>
+                    <div class="cols-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-picture-o" aria-hidden="true"></i></span>
+                            <input type="file" class="form-control" asp-for="Input.Picture"/>
+                        </div>
+                    </div>
+                    <span asp-validation-for="Input.Picture" class="text-danger"></span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="Input.Birthday" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user-circle" aria-hidden="true"></i></span>
+                        <input class="form-control" asp-for="Input.Birthday" asp-format="{0:yyyy-MM-ddTHH:mm}" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Birthday" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.Password" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" asp-for="Input.Password" placeholder="Enter your password" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Input.ConfirmPassword" class="cols-sm-2 control-label"></label>
+                <div class="cols-sm-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                        <input type="password" class="form-control" asp-for="Input.ConfirmPassword" placeholder="Enter your password" />
+                    </div>
+                </div>
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

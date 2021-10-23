@@ -1,0 +1,62 @@
+﻿@model IEnumerable<CoreMVC_Exam.Models.Order>
+
+<br />
+
+<table id="myOrders" class="table">
+    <thead>
+        <tr>
+            <th>
+                Client Name
+            </th>
+            <th>
+                Product
+            </th>
+            <th>
+                Category
+            </th>
+            <th>
+                DateStart
+            </th>
+            <th>
+                DateEnd
+            </th>
+            <th>
+                Price
+            </th>
+            <th>
+
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                   @item.Master.FirstName @item.Master.LastName
+                </td>
+                <td>
+                   @item.Client.FirstName  @item.Client.LastName
+                </td>
+                <td>
+                   @item.Product.Brand @item.Product.Model)
+                </td>
+                <td>
+                    @item.Product.Category.Name
+                </td>
+                <td>
+                    @item.DateTimeStart
+                </td>
+                <td>
+                   @item.DateTimeEnd
+                </td>
+                <td>
+                   @item.Price
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

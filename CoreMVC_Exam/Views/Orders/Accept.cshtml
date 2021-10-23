@@ -1,0 +1,136 @@
+﻿@model CoreMVC_Exam.Models.Order
+
+@{
+    ViewData["Title"] = "Accept Order";
+}
+
+<h1>Принятие заказа:</h1>
+
+<hr />
+
+@using (Html.BeginForm("AcceptOrder", "Orders"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    //<!-- втроенная защита от CSRF - атаки -->
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ID)
+        @Html.TextBoxFor(m => m.ID, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.ID)
+    </div>
+
+    <h4>Товар:</h4>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Brand)
+        @Html.TextBoxFor(m => m.Product.Brand, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Product.Brand)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Model)
+        @Html.TextBoxFor(m => m.Product.Model, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Product.Model)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.SerialNumber)
+        @Html.TextBoxFor(m => m.Product.SerialNumber, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Product.SerialNumber)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Category.Name)
+        @Html.TextBoxFor(m => m.Product.Category.Name, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Product.Category.Name)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Product.Price)
+        @Html.TextBoxFor(m => m.Product.Price, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Product.Price)
+    </div>
+
+    <h1>
+        Клиент:
+    </h1>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.FirstName)
+        @Html.TextBoxFor(m => m.Client.FirstName, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.FirstName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.LastName)
+        @Html.TextBoxFor(m => m.Client.LastName, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.LastName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.Address)
+        @Html.TextBoxFor(m => m.Client.Address, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.Address)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.Email)
+        @Html.TextBoxFor(m => m.Client.Email, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.Email)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.Phone)
+        @Html.TextBoxFor(m => m.Client.Phone, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.Phone)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Client.Passport)
+        @Html.TextBoxFor(m => m.Client.Passport, new { @class = "form-control", @readonly = "readonly" })
+        @Html.ValidationMessageFor(m => m.Client.Passport)
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Client.Birthday" class="control-label"></label>
+        <input asp-for="Client.Birthday" readonly="readonly" class="form-control" />
+        <span asp-validation-for="Client.Birthday" class="text-danger"></span>
+    </div>
+
+    <h1>
+        Мастер:
+    </h1>
+
+    <div class="form-group">
+        <label asp-for="DateTimeStart" class="control-label"></label>
+        <input asp-for="DateTimeStart" class="form-control" />
+        <span asp-validation-for="DateTimeStart" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DateTimeEnd" class="control-label"></label>
+        <input asp-for="DateTimeEnd" class="form-control" />
+        <span asp-validation-for="DateTimeEnd" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Price)
+        @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Price)
+    </div>
+
+    <button class="btn btn-primary">Принять</button>
+
+    <input class="btn" type="button" value="Отменить"
+           onclick="@("window.location.href='" + @Url.Action("Index", "Orders") + "'");" />
+}
+
+<div>
+    <a asp-action="Index">Вернуться</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,66 @@
+﻿@model CoreMVC_Exam.ViewModels.OrderEditViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Редактирование заказа:</h1>
+
+<hr />
+
+@using (Html.BeginForm("Edit", "Orders"))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors!")
+
+    <!-- втроенная защита от CSRF - атаки -->
+    @Html.AntiForgeryToken()
+
+    <h4>Товар:</h4>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Products)
+        @Html.DropDownListFor(m => m.Temp_Product, new SelectList(Model.Products), "Select Product", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Products)
+    </div>
+
+    <h4>Клиент:</h4>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Clients)
+        @Html.DropDownListFor(m => m.Temp_Client, new SelectList(Model.Clients), "Select Client", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Products)
+    </div>
+
+    <h4>Мастер:</h4>
+
+    <div class="form-group">
+        <label asp-for="Order.DateTimeStart" class="control-label"></label>
+        <input asp-for="Order.DateTimeStart" class="form-control" />
+        <span asp-validation-for="Order.DateTimeStart" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Order.DateTimeEnd" class="control-label"></label>
+        <input asp-for="Order.DateTimeEnd" class="form-control" />
+        <span asp-validation-for="Order.DateTimeEnd" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Order.Price)
+        @Html.TextBoxFor(m => m.Order.Price, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Order.Price)
+    </div>
+
+
+    <button class="btn btn-primary">Сохранить</button>
+
+    <input class="btn" type="button" value="Отменить"
+           onclick="@("window.location.href='" + @Url.Action("Index", "Products") + "'");" />
+
+    <br />
+    <br />
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

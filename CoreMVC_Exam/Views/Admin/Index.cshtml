@@ -1,0 +1,334 @@
+﻿@model CoreMVC_Exam.ViewModels.AdminMasterViewModel
+
+@{
+    ViewData["Title"] = "Admin Panel";
+}
+
+<style>
+    .table {
+        width: 100%;
+        border: none;
+        margin-bottom: 20px;
+        border-collapse: separate;
+    }
+
+        .table thead th {
+            font-weight: bold;
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            color: white;
+            background: #25b7d3;
+            font-size: 14px;
+            border-top: 1px solid #ddd;
+        }
+
+        .table tr th:first-child, .table tr td:first-child {
+            border-left: 1px solid #ddd;
+        }
+
+        .table tr th:last-child, .table tr td:last-child {
+            border-right: 1px solid #ddd;
+        }
+
+        .table thead tr th:first-child {
+            border-radius: 20px 0 0 0;
+        }
+
+        .table thead tr th:last-child {
+            border-radius: 0 20px 0 0;
+        }
+
+        .table tbody td {
+            text-align: left;
+            border: none;
+            padding: 10px 15px;
+            font-size: 14px;
+            vertical-align: top;
+        }
+
+        .table tbody tr:nth-child(even) {
+            background: #25b7d3;
+            color: white;
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: 1px solid #ddd;
+        }
+
+            .table tbody tr:last-child td:first-child {
+                border-radius: 0 0 0 20px;
+            }
+
+            .table tbody tr:last-child td:last-child {
+                border-radius: 0 0 20px 0;
+            }
+
+
+    .main_img {
+        border: 3px solid transparent; /* Прозрачная рамка */
+        width: 100px;
+        height: 100px;
+    }
+
+        .main_img:hover {
+            border: 3px solid #25b7d3; /* Цветная рамка */
+        }
+</style>
+
+<h1>Заказы:</h1>
+
+<p>
+    <a asp-action="Create">Создать новый заказ:</a>
+</p>
+
+<div id="results" class="form-group">
+    <table id="ordersTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    Мастер
+                </th>
+                <th>
+                    Клиент
+                </th>
+                <th>
+                    Продукт
+                </th>
+                <th>
+                    Категория
+                </th>
+                <th>
+                    Дата начала работы
+                </th>
+                <th>
+                    Дата конца работы
+                </th>
+                <th>
+                    Стоимость
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Orders)
+            {
+                <tr>
+                    <td>
+                        @if (item.Master != null)
+                        {
+                            @item.Master.FirstName @item.Master.LastName
+                        }
+                        else
+                        {
+                        <h4>[Заказ в ожидании мастера]</h4>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Client != null)
+                        {
+                        @item.Client.FirstName  @item.Client.LastName
+                        }
+                    </td>
+                    <td>
+                        @item.Product.Brand  @item.Product.Model
+                    </td>
+                    <td>
+                        @item.Product.Category.Name
+                    </td>
+                    <td>
+                        @item.DateTimeStart
+                    </td>
+                    <td>
+                        @item.DateTimeEnd
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Orders" asp-route-id="@item.ID">Редактирование</a>
+                        <a asp-action="Delete" asp-controller="Orders" asp-route-id="@item.ID">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+<h1>Мастера:</h1>
+
+<a class="nav-item-child nav-item-hover" asp-area="Identity" asp-page="/Account/Register">Создать мастера</a>
+<hr />
+
+<div id="results" class="form-group">
+    <table id="mastersTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    Фото
+                </th>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Почта
+                </th>
+                <th>
+                    Пасспорт
+                </th>
+                <th>
+                    Заработанные деньги
+                </th>
+                <th>
+                    Кол-во заказов
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Masters)
+            {
+                <tr>
+                    <td>
+                        <a href="@item.Master.PathToImage" target="_blank">
+                            <img class="main_img" src="@item.Master.PathToImage" />
+                        </a>
+                    </td>
+                    <td>
+                        @item.Master.FirstName @item.Master.LastName
+                    </td>
+                    <td>
+                        @item.Master.Email
+                    </td>
+                    <td>
+                        @item.Master.Passport
+                    </td>
+                    <td>
+                        @item.EarnedMoney
+                    </td>
+                    <td>
+                        @item.CountOrders
+                    </td>
+                    <td>
+                        <a asp-action="MasterEdit" asp-route-id="@item.Master.Id">Редактирование</a>
+                        <a asp-action="MasterDetails" asp-route-id="@item.Master.Id">Подробнее</a>
+                        <a asp-action="MasterDelete" asp-route-id="@item.Master.Id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<h1>Мастера и их заказы:</h1>
+
+<form action="" method="post">
+    <div class="form-group col-4 p-0">
+        @Html.DropDownListFor(m => m.ComboMasters, new SelectList(Model.ComboMasters, "Email", "Email"), "Select Category", new { @class = "form-control" })
+    </div>
+
+    <script type="text/javascript">
+
+    // 3 способ (передача JSON при помощи JQuery по методу GET)
+
+    $(document).ready(function () {
+        // обработчик выбора пункта из выпадающего списка
+        $('#ComboMasters').change(function (e) {
+
+            // предотвратить отправку формы
+            e.preventDefault();
+
+            // получить жанр из выпадающего списка
+            var email = $('#ComboMasters').val();
+
+            // кодирование названия жанра для отправки методом GET
+            email = encodeURIComponent(email);
+
+            // оправка по Ajax при помощи метода GET
+            $('#orders_m_results').load('@Url.Action("OrdersMasterList", "Admin")?email=' + email)
+        });
+    });
+    </script>
+</form>
+
+
+<div id="orders_m_results" class="form-group">
+    <table id="ordersTable" class="table">
+    </table>
+</div>
+
+
+
+<h1>Клиенты:</h1>
+
+<a asp-action="Create" asp-controller="Clients">Создать</a>
+
+<hr />
+
+<div id="results" class="form-group">
+    <table id="clientsTable" class="table">
+        <thead>
+            <tr>
+                <th>
+                    Имя
+                </th>
+                <th>
+                    Фамилия
+                </th>
+                <th>
+                    Пасспорт
+                </th>
+                <th>
+                    Телефон
+                </th>
+                <th>
+                    Адресс
+                </th>
+                <th>
+                    Почта
+                </th>
+                <th>
+                    Дата рождения
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Clients)
+            {
+                <tr>
+                    <td>
+                        @item.FirstName
+                    </td>
+                    <td>
+                        @item.LastName
+                    </td>
+                    <td>
+                        @item.Passport
+                    </td>
+                    <td>
+                        @item.Phone
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>
+                        @item.Email
+                    </td>
+                    <td>
+                        @item.Birthday
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Clients" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-controller="Clients" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-controller="Clients" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CoreMVC_Exam.Models.Order>
+
+<table id="orders" class="table">
+        <thead>
+            <tr>
+                <th>
+                    Master Name
+                </th>
+                <th>
+                    Client Name
+                </th>
+                <th>
+                    Product
+                </th>
+                <th>
+                    Category
+                </th>
+                <th>
+                    DateStart
+                </th>
+                <th>
+                    DateEnd
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @if (item.Master != null)
+                        {
+                            @item.Master.FirstName @item.Master.LastName
+                        }
+                    </td>
+                    <td>
+                        @item.Client.FirstName  @item.Client.LastName
+                    </td>
+                    <td>
+                        @item.Product.Brand  @item.Product.Model
+                    </td>
+                    <td>
+                        @item.Product.Category.Name
+                    </td>
+                    <td>
+                        @item.DateTimeStart
+                    </td>
+                    <td>
+                        @item.DateTimeEnd
+                    </td>
+                    <td>
+                        @item.Price
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Orders" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-action="Details" asp-controller="Orders" asp-route-id="@item.ID">Details</a> |
+                        <a asp-action="Delete" asp-controller="Orders" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>

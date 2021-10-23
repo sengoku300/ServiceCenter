@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<CoreMVC_Exam.Areas.Identity.Data.CoreMVC_ExamUser> SignInManager
+@inject UserManager<CoreMVC_Exam.Areas.Identity.Data.CoreMVC_ExamUser> UserManager
+
+<style>
+    .round {
+        border-radius: 100px; /* Радиус скругления */
+        box-shadow: 0 0 0 3px #25b7d3, 0 0 5px #333; /* Параметры теней */
+        height: 50px;
+        width: 50px;
+    }
+</style>
+
+<ul class="navbar-nav">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li class="js_nav-item nav-item">
+        <a class="nav-item-child nav-item-hover" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            <img src="@UserManager.GetUserAsync(User).Result.PathToImage" class="round" />
+        </a>
+    </li>
+    <li class="js_nav-item nav-item">
+        <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button  type="submit" class="nav-link btn btn-link nav-item-child text-dark">Выйти</button>
+        </form>
+    </li>
+}
+else
+{
+    @if (User.IsInRole("Admin"))
+    {
+    <li class="nav-item">
+        <a class="nav-item-child nav-item-hover" asp-area="Identity" asp-page="/Account/Register">Добавить мастера</a>
+    </li>      
+    }
+    <li class="nav-item">
+        <a class="nav-item-child nav-item-hover" asp-area="Identity" asp-page="/Account/Login">Вход</a>
+    </li>
+}
+</ul>
